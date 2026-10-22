@@ -20,9 +20,9 @@ export function SearchModal() {
   const trendingTags = [
     "Overshirt",
     "Sneakers",
-    "Headphones",
-    "Leather Weekender",
+    "Weekender",
     "Wool Trouser",
+    "Chrono Watch",
     "Diffuser",
   ];
 
@@ -70,43 +70,43 @@ export function SearchModal() {
         onClick={() => setIsSearchOpen(false)}
       />
 
-      {/* Search Container */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-zinc-950 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 overflow-hidden animate-in zoom-in-95 duration-200">
+      {/* Search Container — Clean White Style */}
+      <div className="relative w-full max-w-2xl bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[#EAE8E3] z-10 overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Search Header Input */}
-        <div className="relative p-4 sm:p-5 border-b border-zinc-100 dark:border-zinc-800 flex items-center gap-3">
-          <Search className="w-5 h-5 text-zinc-400 shrink-0" />
+        <div className="relative p-4 sm:p-5 border-b border-[#EAE8E3] flex items-center gap-3">
+          <Search className="w-5 h-5 text-[#8C8B85] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by product name, fabric, or category..."
-            className="w-full bg-transparent text-base sm:text-lg text-zinc-950 dark:text-white placeholder-zinc-400 focus:outline-none"
+            placeholder="Search silhouettes, natural fabrics, or collections..."
+            className="w-full bg-transparent text-base sm:text-lg text-[#141413] placeholder-[#8C8B85] focus:outline-none"
           />
           {query ? (
             <button
               onClick={() => setQuery("")}
-              className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 p-1"
+              className="text-[#8C8B85] hover:text-[#141413] p-1"
             >
               <X className="w-4 h-4" />
             </button>
           ) : (
-            <kbd className="hidden sm:inline-block font-mono text-[11px] text-zinc-400 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded">
+            <kbd className="hidden sm:inline-block font-mono text-[10px] text-[#8C8B85] bg-[#F2F0EB] border border-[#EAE8E3] px-2 py-0.5 rounded-full">
               ESC
             </kbd>
           )}
         </div>
 
         {/* Trending Suggestions */}
-        <div className="p-4 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-100 dark:border-zinc-800 flex items-center gap-2 overflow-x-auto text-xs scrollbar-none">
-          <span className="text-zinc-400 font-mono text-[11px] uppercase tracking-wider shrink-0 flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-amber-500" /> Popular:
+        <div className="p-3.5 sm:p-4 bg-[#FAF9F5] border-b border-[#EAE8E3] flex items-center gap-2 overflow-x-auto text-xs scrollbar-none">
+          <span className="text-[#8C8B85] font-mono text-[10px] uppercase tracking-wider shrink-0 flex items-center gap-1 font-bold">
+            <Sparkles className="w-3 h-3 text-[#E07A5F]" /> Trending:
           </span>
           {trendingTags.map((tag) => (
             <button
               key={tag}
               onClick={() => setQuery(tag)}
-              className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-amber-400 text-zinc-700 dark:text-zinc-300 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors"
+              className="bg-white border border-[#EAE8E3] hover:border-[#141413] text-[#5C5B57] hover:text-[#141413] px-3 py-1 rounded-full whitespace-nowrap transition-colors text-[11px]"
             >
               {tag}
             </button>
@@ -114,20 +114,20 @@ export function SearchModal() {
         </div>
 
         {/* Results List */}
-        <div className="max-h-[60vh] overflow-y-auto p-4 divide-y divide-zinc-100 dark:divide-zinc-800">
+        <div className="max-h-[60vh] overflow-y-auto p-4 divide-y divide-[#F0EFEB]">
           {filteredProducts.length === 0 ? (
-            <div className="text-center py-12 text-zinc-400 text-xs">
-              No products found matching &ldquo;{query}&rdquo;. Try another term.
+            <div className="text-center py-12 text-[#8C8B85] text-xs">
+              No pieces found matching &ldquo;{query}&rdquo;. Try another search term.
             </div>
           ) : (
             filteredProducts.map((p) => (
               <div
                 key={p.id}
                 onClick={() => handleSelectProduct(p)}
-                className="py-3 px-2 flex items-center justify-between gap-4 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 cursor-pointer transition-colors group"
+                className="py-3 px-2 flex items-center justify-between gap-4 rounded-xl hover:bg-[#FAF9F5] cursor-pointer transition-colors group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-14 rounded-lg overflow-hidden bg-zinc-200 shrink-0">
+                  <div className="relative w-12 h-14 rounded-xl overflow-hidden bg-[#F6F5F1] shrink-0 border border-[#EAE8E3]">
                     <Image
                       src={p.images[0]}
                       alt={p.name}
@@ -137,22 +137,22 @@ export function SearchModal() {
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-amber-500">
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-[#E07A5F] font-bold">
                       {p.categoryLabel}
                     </span>
-                    <h4 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-amber-500 transition-colors">
+                    <h4 className="text-xs sm:text-sm font-bold text-[#141413] group-hover:text-[#E07A5F] transition-colors">
                       {p.name}
                     </h4>
-                    <p className="text-xs text-zinc-400 line-clamp-1">{p.tagline}</p>
+                    <p className="text-[11px] text-[#8C8B85] line-clamp-1">{p.tagline}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold font-mono text-zinc-900 dark:text-white">
+                  <span className="text-xs sm:text-sm font-bold font-mono text-[#141413]">
                     {formatPrice(p.price)}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:bg-amber-400 group-hover:text-zinc-950 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-full bg-[#F2F0EB] flex items-center justify-center text-[#5C5B57] group-hover:bg-[#141413] group-hover:text-white transition-colors">
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </div>

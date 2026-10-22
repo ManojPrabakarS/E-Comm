@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Camera, ArrowUpRight } from "lucide-react";
+import { Camera, ArrowUpRight, Sparkles } from "lucide-react";
 
 export function CommunityGrid() {
   const communityPosts = [
@@ -31,15 +31,15 @@ export function CommunityGrid() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
+    <section className="py-16 sm:py-20 bg-[#FDFDFB] border-t border-[#EAE8E3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8">
           <div>
-            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-amber-500 mb-2">
+            <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-[#E07A5F] mb-1.5">
               <Camera className="w-3.5 h-3.5" />
-              <span>COMMUNITY CURATION</span>
+              <span>COMMUNITY STYLING</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-light text-zinc-950 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-light text-[#141413]">
               <strong className="font-extrabold">Styled</strong> By You
             </h2>
           </div>
@@ -47,9 +47,9 @@ export function CommunityGrid() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 dark:text-white hover:text-amber-500 transition-colors mt-2 sm:mt-0"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#141413] hover:text-[#E07A5F] transition-colors mt-2 sm:mt-0 uppercase tracking-wider"
           >
-            <span>Tag #AtelierNoir to be featured</span>
+            <span>Tag #MPStore to be featured</span>
             <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
@@ -58,7 +58,7 @@ export function CommunityGrid() {
           {communityPosts.map((post) => (
             <div
               key={post.id}
-              className="group relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 shadow-sm"
+              className="group relative aspect-square rounded-[22px] overflow-hidden bg-[#F2F0EB] shadow-sm border border-[#EAE8E3]"
             >
               <Image
                 src={post.image}
@@ -69,9 +69,9 @@ export function CommunityGrid() {
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity flex flex-col justify-end p-4 text-white">
-                <p className="text-xs font-bold text-amber-300 font-mono">{post.handle}</p>
-                <p className="text-[11px] text-zinc-300 line-clamp-1">{post.tag}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity flex flex-col justify-end p-4 text-white">
+                <p className="text-xs font-bold text-[#FFAE98] font-mono">{post.handle}</p>
+                <p className="text-[11px] text-white/90 line-clamp-1">{post.tag}</p>
               </div>
             </div>
           ))}

@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ATELIER STUDIOS — Architectural Luxury Essentials & Modern Design",
+  title: "MP.Store — Modern Indian E-Commerce & Curated Fashion",
   description:
-    "Direct-to-consumer artisanal essentials crafted from GOTS organic fabrics, aerospace alloy, and Tuscan leather. Engineered for longevity.",
+    "MP.Store — Premium direct-to-consumer fashion, artisanal footwear, and leather essentials. All prices in Indian Rupees (₹) with 48h dispatch across India.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans selection:bg-amber-400 selection:text-zinc-950">
+      <body className="min-h-full flex flex-col bg-[#FDFDFB] text-[#141413] font-sans selection:bg-[#E07A5F] selection:text-white">
         <StoreProvider>
           {children}
           <CartDrawer />

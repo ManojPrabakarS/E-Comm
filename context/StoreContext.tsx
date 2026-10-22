@@ -41,8 +41,8 @@ interface StoreContextType {
   applyCoupon: (code: string) => boolean;
   removeCoupon: () => void;
 
-  currency: "USD" | "INR" | "EUR";
-  setCurrency: (currency: "USD" | "INR" | "EUR") => void;
+  currency: "INR";
+  setCurrency: (currency: "INR") => void;
   formatPrice: (amount: number) => string;
 }
 
@@ -64,9 +64,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
-  const [appliedCoupon, setAppliedCoupon] = useState<string | null>("FIRST15");
-  const [discountRate, setDiscountRate] = useState<number>(0.15);
-  const [currency, setCurrency] = useState<"USD" | "INR" | "EUR">("USD");
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>("MP20");
+  const [discountRate, setDiscountRate] = useState<number>(0.20);
+  const [currency, setCurrency] = useState<"INR">("INR");
 
   const showToast = (message: string, type: "success" | "info" | "warning" = "success") => {
     const id = Math.random().toString(36).substring(2, 9);
@@ -163,14 +163,26 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const applyCoupon = (code: string) => {
     const cleanCode = code.trim().toUpperCase();
-    if (cleanCode === "FLASH20" || cleanCode === "ARCHIVE35" || cleanCode === "FIRST15") {
+    if (
+      cleanCode === "MP20" ||
+      cleanCode === "MP15" ||
+      cleanCode === "FLASH20" ||
+      cleanCode === "ARCHIVE35" ||
+      cleanCode === "FIRST15" ||
+      cleanCode === "WELCOME15"
+    ) {
       setAppliedCoupon(cleanCode);
-      const rate = cleanCode === "ARCHIVE35" ? 0.35 : cleanCode === "FLASH20" ? 0.2 : 0.15;
+      const rate =
+        cleanCode === "ARCHIVE35"
+          ? 0.35
+          : cleanCode === "MP20" || cleanCode === "FLASH20"
+          ? 0.20
+          : 0.15;
       setDiscountRate(rate);
       showToast(`Promo code ${cleanCode} applied! (${rate * 100}% off)`, "success");
       return true;
     } else {
-      showToast("Invalid promo code. Try FLASH20 or FIRST15", "warning");
+      showToast("Invalid promo code. Try MP20 or WELCOME15", "warning");
       return false;
     }
   };
@@ -185,15 +197,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const formatPrice = (amount: number) => {
-    if (currency === "INR") {
-      const inrAmount = Math.round(amount * 84);
-      return `₹${inrAmount.toLocaleString("en-IN")}`;
-    }
-    if (currency === "EUR") {
-      const eurAmount = Math.round(amount * 0.92);
-      return `€${eurAmount.toLocaleString("de-DE")}`;
-    }
-    return `$${amount.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+    return `₹${amount.toLocaleString("en-IN")}`;
   };
 
   return (

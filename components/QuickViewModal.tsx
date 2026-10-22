@@ -66,25 +66,25 @@ export function QuickViewModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
         onClick={() => setQuickViewProduct(null)}
       />
 
-      {/* Modal Dialog */}
-      <div className="relative w-full max-w-4xl bg-white dark:bg-zinc-950 rounded-3xl shadow-2xl overflow-hidden z-10 border border-zinc-200 dark:border-zinc-800 animate-in zoom-in-95 duration-200 my-auto">
+      {/* Modal Dialog — Clean White Style */}
+      <div className="relative w-full max-w-4xl bg-white rounded-[28px] sm:rounded-[36px] shadow-2xl overflow-hidden z-10 border border-[#EAE8E3] animate-in zoom-in-95 duration-200 my-auto">
         {/* Close Button */}
         <button
           onClick={() => setQuickViewProduct(null)}
-          className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 text-zinc-500 hover:text-zinc-950 dark:hover:text-white flex items-center justify-center shadow-md transition-colors"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/95 text-[#5C5B57] hover:text-[#141413] flex items-center justify-center shadow-md transition-colors"
           aria-label="Close dialog"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Media Column */}
-          <div className="p-6 bg-zinc-100 dark:bg-zinc-900 flex flex-col justify-between">
-            <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-sm bg-zinc-200 dark:bg-zinc-800">
+          <div className="p-6 bg-[#F6F5F1] flex flex-col justify-between">
+            <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-sm bg-white">
               <Image
                 src={product.images[selectedImageIndex] || product.images[0]}
                 alt={product.name}
@@ -96,14 +96,14 @@ export function QuickViewModal() {
 
             {/* Thumbnail Navigation */}
             {product.images.length > 1 && (
-              <div className="flex items-center gap-3 mt-4">
+              <div className="flex items-center gap-2.5 mt-4">
                 {product.images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImageIndex(idx)}
                     className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
                       selectedImageIndex === idx
-                        ? "border-amber-400 scale-105"
+                        ? "border-[#141413] scale-105"
                         : "border-transparent opacity-70 hover:opacity-100"
                     }`}
                   >
@@ -123,39 +123,39 @@ export function QuickViewModal() {
           {/* Right Product Details Column */}
           <div className="p-6 sm:p-8 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
             <div>
-              {/* Category, Rating, Wishlist */}
+              {/* Category, Rating, Scarcity */}
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#E07A5F] font-bold">
                   {product.categoryLabel}
                 </span>
 
-                <div className="flex items-center gap-1 text-xs font-bold text-zinc-800 dark:text-zinc-200">
-                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                <div className="flex items-center gap-1 text-xs font-bold text-[#141413]">
+                  <Star className="w-3.5 h-3.5 fill-[#D4A373] text-[#D4A373]" />
                   <span>{product.rating}</span>
-                  <span className="text-zinc-400">({product.reviewCount} reviews)</span>
+                  <span className="text-[#8C8B85]">({product.reviewCount})</span>
                 </div>
               </div>
 
               {/* Title & Tagline */}
-              <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#141413] tracking-tight mb-1">
                 {product.name}
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
+              <p className="text-xs text-[#5C5B57] mb-4">
                 {product.tagline}
               </p>
 
               {/* Price & Badges */}
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-                <span className="text-2xl font-bold font-mono text-zinc-950 dark:text-white">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#F0EFEB]">
+                <span className="text-2xl font-bold font-mono text-[#141413]">
                   {formatPrice(product.price)}
                 </span>
                 {product.originalPrice && (
-                  <span className="text-sm font-mono text-zinc-400 line-through">
+                  <span className="text-sm font-mono text-[#8C8B85] line-through">
                     {formatPrice(product.originalPrice)}
                   </span>
                 )}
                 {product.discountPercent && (
-                  <span className="bg-rose-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-md">
+                  <span className="bg-[#E63946] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">
                     Save {product.discountPercent}%
                   </span>
                 )}
@@ -163,18 +163,18 @@ export function QuickViewModal() {
 
               {/* Color Selection */}
               <div className="mb-5">
-                <label className="block text-xs font-bold text-zinc-800 dark:text-zinc-200 uppercase tracking-wider mb-2">
-                  Color: <span className="font-normal text-zinc-500">{currentColor.name}</span>
+                <label className="block text-xs font-bold text-[#141413] uppercase tracking-wider mb-2">
+                  Color: <span className="font-normal text-[#5C5B57]">{currentColor.name}</span>
                 </label>
                 <div className="flex items-center gap-2">
                   {product.colors.map((color, idx) => (
                     <button
                       key={color.name}
                       onClick={() => setSelectedColorIndex(idx)}
-                      className={`w-7 h-7 rounded-full border-2 transition-all ${
+                      className={`w-6 h-6 rounded-full border-2 transition-all ${
                         selectedColorIndex === idx
-                          ? "ring-2 ring-amber-400 ring-offset-2 dark:ring-offset-zinc-950 border-white scale-110"
-                          : "border-zinc-300 dark:border-zinc-700 hover:scale-105"
+                          ? "ring-2 ring-[#141413] ring-offset-2 border-white scale-110"
+                          : "border-zinc-300 hover:scale-105"
                       }`}
                       style={{ backgroundColor: color.hex }}
                       title={color.name}
@@ -186,10 +186,10 @@ export function QuickViewModal() {
               {/* Size Selection */}
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-bold text-zinc-800 dark:text-zinc-200 uppercase tracking-wider">
+                  <label className="text-xs font-bold text-[#141413] uppercase tracking-wider">
                     Select Size
                   </label>
-                  <button className="text-[11px] text-zinc-400 hover:text-zinc-900 dark:hover:text-white underline">
+                  <button className="text-[11px] text-[#8C8B85] hover:text-[#141413] underline">
                     Size Guide
                   </button>
                 </div>
@@ -198,10 +198,10 @@ export function QuickViewModal() {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`min-w-[44px] py-2 px-3 text-xs font-semibold rounded-xl border transition-all ${
+                      className={`min-w-[44px] py-2 px-3 text-xs font-semibold rounded-full border transition-all ${
                         selectedSize === size
-                          ? "bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 border-transparent shadow-sm"
-                          : "border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400"
+                          ? "bg-[#141413] text-white border-transparent shadow-sm"
+                          : "border-[#EAE8E3] text-[#5C5B57] hover:border-[#141413]"
                       }`}
                     >
                       {size}
@@ -210,15 +210,15 @@ export function QuickViewModal() {
                 </div>
               </div>
 
-              {/* Product description & highlights */}
+              {/* Highlights */}
               <div className="mb-6">
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+                <p className="text-xs text-[#5C5B57] leading-relaxed mb-3">
                   {product.description}
                 </p>
-                <ul className="space-y-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                <ul className="space-y-1.5 text-xs text-[#5C5B57]">
                   {product.features.map((feat, i) => (
                     <li key={i} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[#2D6A4F] shrink-0" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -227,23 +227,23 @@ export function QuickViewModal() {
             </div>
 
             {/* Bottom Actions */}
-            <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 space-y-3">
+            <div className="pt-4 border-t border-[#F0EFEB] space-y-3">
               <div className="flex items-center gap-3">
                 {/* Quantity */}
-                <div className="flex items-center border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 h-12">
+                <div className="flex items-center border border-[#EAE8E3] rounded-full overflow-hidden bg-[#FDFDFB] h-12">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 h-full"
+                    className="px-3 hover:bg-[#F2F0EB] text-[#5C5B57] h-full"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="px-3 text-xs font-mono font-bold text-zinc-900 dark:text-white">
+                  <span className="px-3 text-xs font-mono font-bold text-[#141413]">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 h-full"
+                    className="px-3 hover:bg-[#F2F0EB] text-[#5C5B57] h-full"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -253,7 +253,7 @@ export function QuickViewModal() {
                 {/* Add to Bag Button */}
                 <button
                   onClick={handleAdd}
-                  className="flex-1 h-12 bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs sm:text-sm rounded-xl shadow-lg flex items-center justify-center gap-2 transition-colors"
+                  className="flex-1 h-12 bg-[#141413] hover:bg-[#2C2C2B] text-white font-bold text-xs sm:text-sm rounded-full shadow-lg flex items-center justify-center gap-2 transition-colors"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add to Bag · {formatPrice(product.price * quantity)}</span>
@@ -262,27 +262,27 @@ export function QuickViewModal() {
                 {/* Wishlist Button */}
                 <button
                   onClick={() => toggleWishlist(product.id)}
-                  className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-colors ${
+                  className={`w-12 h-12 rounded-full border flex items-center justify-center transition-colors ${
                     wishlisted
-                      ? "bg-rose-50 border-rose-200 text-rose-500 dark:bg-rose-950/40 dark:border-rose-900"
-                      : "border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-rose-500"
+                      ? "bg-[#FAF3F0] border-[#E07A5F]/30 text-[#E07A5F]"
+                      : "border-[#EAE8E3] text-[#5C5B57] hover:text-[#E07A5F]"
                   }`}
                   aria-label="Toggle wishlist"
                 >
-                  <Heart className={`w-5 h-5 ${wishlisted ? "fill-rose-500" : ""}`} />
+                  <Heart className={`w-4 h-4 ${wishlisted ? "fill-[#E07A5F]" : ""}`} />
                 </button>
               </div>
 
               {/* Guarantees */}
-              <div className="grid grid-cols-3 gap-2 text-[10px] text-zinc-400 text-center pt-2">
+              <div className="grid grid-cols-3 gap-2 text-[10px] text-[#8C8B85] text-center pt-2">
                 <span className="flex items-center justify-center gap-1">
-                  <Truck className="w-3 h-3 text-amber-500" /> Free Shipping
+                  <Truck className="w-3 h-3 text-[#E07A5F]" /> Free Delivery
                 </span>
                 <span className="flex items-center justify-center gap-1">
-                  <RotateCcw className="w-3 h-3 text-amber-500" /> 30-Day Returns
+                  <RotateCcw className="w-3 h-3 text-[#E07A5F]" /> 30-Day Returns
                 </span>
                 <span className="flex items-center justify-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-amber-500" /> 2-Yr Warranty
+                  <ShieldCheck className="w-3 h-3 text-[#E07A5F]" /> 2-Yr Guarantee
                 </span>
               </div>
             </div>
